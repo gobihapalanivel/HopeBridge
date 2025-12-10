@@ -7,8 +7,18 @@
   <link rel="icon" type="image/x-icon" href="./resources/logos/favicon.ico">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    
     html { scroll-behavior: smooth; }
+
+    /* Override Tailwind bg-white */
+    .bg-white { background-color: #fff9fe !important; }
     
     /* Navigation Styling */
     header {
@@ -26,6 +36,107 @@
       font-weight: 900;
       font-size: 1.5rem;
       letter-spacing: 0.5px;
+    }
+
+    /* Hero Section Text Styling */
+    .hero-title {
+      background: linear-gradient(135deg, #3C0008 0%, #5a000b 50%, #162A23 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      letter-spacing: -1px;
+    }
+
+    .hero-description {
+      line-height: 1.8;
+      color: #4a5568;
+      font-weight: 400;
+    }
+
+    .hero-highlight {
+      color: #3C0008;
+      font-weight: 700;
+      font-size: 1.125rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #3C0008, #162A23);
+      border-radius: 2px;
+    }
+
+    /* Section Titles */
+    .section-title {
+      background: linear-gradient(135deg, #3C0008 0%, #162A23 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      color: #718096;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* Step Card Text */
+    .step-number {
+      font-weight: 900;
+      background: linear-gradient(135deg, #3C0008 0%, #5a000b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .step-title {
+      color: #1a202c;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .step-description {
+      color: #4a5568;
+      line-height: 1.7;
+    }
+
+    /* Campaign Card Text */
+    .campaign-title {
+      color: #1a202c;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .campaign-description {
+      color: #718096;
+      line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta-title {
+      font-weight: 800;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      letter-spacing: -0.5px;
+    }
+
+    .cta-description {
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    /* Footer Text */
+    .footer-heading {
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     /* Glassy Button Style */
@@ -58,6 +169,7 @@
       transition: all 0.3s ease;
       font-weight: 700;
       box-shadow: 0 4px 15px rgba(60, 0, 8, 0.3);
+      letter-spacing: 0.5px;
     }
 
     .donate-btn:hover {
@@ -152,31 +264,48 @@
       border-radius: 3px;
     }
 
-    /* How It Works Image Styling */
-    .step-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 15px rgba(60, 0, 8, 0.15);
-      transition: transform 0.3s ease;
+    /* How It Works Card Styling */
+    .step-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(60, 0, 8, 0.1);
+      transition: all 0.3s ease;
     }
 
-    .step-image:hover {
-      transform: scale(1.05);
+    .step-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(60, 0, 8, 0.2);
+    }
+
+    .step-card-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .step-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #3C0008 0%, #162A23 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(60, 0, 8, 0.3);
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased">
+<body style="background-color: #f4f1f3;" class="text-gray-900 antialiased">
   <!-- Navigation -->
   <header class="sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-[#3C0008] to-[#162A23] rounded-lg flex items-center justify-center shadow-lg">
-            <i class="fas fa-hands-helping text-white text-lg"></i>
-          </div>
+          <img src="./resources/logos/hopebridge-logo.png" alt="HopeBridge logo" class="w-20 h-20 object-contain">
           <span class="logo-text">HopeBridge</span>
         </div>
 
@@ -213,62 +342,95 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <!-- Left Content -->
           <div>
-            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">Make a Difference Today</h1>
-            <p class="text-lg text-gray-600 mb-8">Join our mission to bring hope and change to communities in need. Your contribution, no matter the size, helps provide essential resources to those in need around the world.</p>
-            <button class="px-8 py-3 rounded-full bg-[#3C0008] text-white font-semibold btn">Donate Now</button>
+            <h1 class="hero-title text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Be the Light That Changes Someone's World
+            </h1>
+            <p class="hero-description text-lg mb-4">
+              A single act of kindness can spark hope, restore dignity, and transform lives. Your support empowers us to reach vulnerable communities with critical resources and life-changing opportunities.
+            </p>
+            <p class="hero-highlight mb-8">
+              Together, we can create a future where no one is left behind.
+            </p>
+            <button class="px-8 py-3 rounded-full donate-btn text-white font-semibold btn">
+              <i class="fas fa-heart mr-2"></i>Donate Now
+            </button>
           </div>
 
           <!-- Right Image -->
           <div>
-            <img src="./resources/images/home.jpg" alt="Charity and Donation" class="w-full rounded-lg shadow-lg object-cover" style="max-height: 500px;">
+            <img src="./resources/images/heart-hands.png" alt="Charity and Donation" class="w-full rounded-lg shadow-lg object-cover" style="max-height: 500px;">
           </div>
         </div>
       </div>
     </section>
 
     <!-- How It Works Section -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20" style="background-color: #f4f1f3;">
       <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">How It Works</h2>
+        <h2 class="section-title text-4xl font-bold text-center mb-4">How It Works</h2>
+        <p class="section-subtitle text-center mb-16 max-w-2xl mx-auto">
+          Follow these simple steps to make a lasting impact on the lives of those in need.
+        </p>
 
-        <div class="grid md:grid-cols-3 gap-12">
-          <!-- Step 1 -->
-          <div class="text-center">
-            <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=400&h=300&fit=crop" alt="Choose a Cause" class="step-image">
-            <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#3C0008] to-[#162A23] rounded-full flex items-center justify-center shadow-lg">
-              <i class="fas fa-heart text-2xl text-black"></i>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Step 1 Card -->
+          <div class="step-card">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=400&h=300&fit=crop" alt="Choose a Cause" class="step-card-image">
+              <div class="step-badge">
+                <i class="fas fa-heart text-2xl text-white"></i>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">1. Choose a Cause</h3>
-            <p class="text-gray-600">Browse through our projects and find a cause that you are passionate about.</p>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="step-number text-3xl mr-3">01</span>
+                <h3 class="step-title text-xl">Choose a Cause</h3>
+              </div>
+              <p class="step-description">Browse through our projects and find a cause that you are passionate about supporting.</p>
+            </div>
           </div>
 
-          <!-- Step 2 -->
-          <div class="text-center">
-            <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=300&fit=crop" alt="Make a Donation" class="step-image">
-            <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#3C0008] to-[#162A23] rounded-full flex items-center justify-center shadow-lg">
-              <i class="fas fa-hand-holding-heart text-2xl text-black"></i>
+          <!-- Step 2 Card -->
+          <div class="step-card">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=300&fit=crop" alt="Make a Donation" class="step-card-image">
+              <div class="step-badge">
+                <i class="fas fa-hand-holding-heart text-2xl text-white"></i>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">2. Make a Donation</h3>
-            <p class="text-gray-600">Our secure donation process is quick and easy, ensuring your contribution is safe.</p>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="step-number text-3xl mr-3">02</span>
+                <h3 class="step-title text-xl">Make a Donation</h3>
+              </div>
+              <p class="step-description">Our secure donation process is quick and easy, ensuring your contribution is safe and reaches those in need.</p>
+            </div>
           </div>
 
-          <!-- Step 3 -->
-          <div class="text-center">
-            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=300&fit=crop" alt="See Your Impact" class="step-image">
-            <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#3C0008] to-[#162A23] rounded-full flex items-center justify-center shadow-lg">
-              <i class="fas fa-chart-line text-2xl text-black"></i>
+          <!-- Step 3 Card -->
+          <div class="step-card">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=300&fit=crop" alt="See Your Impact" class="step-card-image">
+              <div class="step-badge">
+                <i class="fas fa-chart-line text-2xl text-white"></i>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">3. See Your Impact</h3>
-            <p class="text-gray-600">Receive updates and see how your generosity is making a real-world difference.</p>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="step-number text-3xl mr-3">03</span>
+                <h3 class="step-title text-xl">See Your Impact</h3>
+              </div>
+              <p class="step-description">Receive updates and see how your generosity is making a real-world difference in people's lives.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Featured Campaigns Section -->
-    <section id="campaigns" class="py-20 bg-gray-50">
+    <section id="campaigns" class="py-20 bg-white">
       <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">Featured Campaigns & Success Stories</h2>
+        <h2 class="section-title text-4xl font-bold text-center mb-16">Featured Campaigns & Success Stories</h2>
 
         <div class="grid md:grid-cols-3 gap-8">
           <!-- Campaign 1 -->
@@ -277,8 +439,8 @@
               <i class="fas fa-book text-6xl text-amber-600"></i>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-3">Education for All</h3>
-              <p class="text-gray-600 text-sm mb-4">Help us provide school supplies and quality education for children in underprivileged communities.</p>
+              <h3 class="campaign-title text-xl mb-3">Education for All</h3>
+              <p class="campaign-description text-sm mb-4">Help us provide school supplies and quality education for children in underprivileged communities.</p>
               
               <div class="mb-4">
                 <div class="flex justify-between text-sm mb-2">
@@ -300,8 +462,8 @@
               <i class="fas fa-tint text-6xl text-blue-600"></i>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-3">Clean Water Initiative</h3>
-              <p class="text-gray-600 text-sm mb-4">Support our mission to build wells and provide access to clean, safe drinking water for rural villages.</p>
+              <h3 class="campaign-title text-xl mb-3">Clean Water Initiative</h3>
+              <p class="campaign-description text-sm mb-4">Support our mission to build wells and provide access to clean, safe drinking water for rural villages.</p>
               
               <div class="mb-4">
                 <div class="flex justify-between text-sm mb-2">
@@ -323,8 +485,8 @@
               <i class="fas fa-leaf text-6xl text-green-600"></i>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-3">Reforestation Project</h3>
-              <p class="text-gray-600 text-sm mb-4">Join us in fighting climate change by planting trees and restoring vital forest ecosystems.</p>
+              <h3 class="campaign-title text-xl mb-3">Reforestation Project</h3>
+              <p class="campaign-description text-sm mb-4">Join us in fighting climate change by planting trees and restoring vital forest ecosystems.</p>
               
               <div class="mb-4">
                 <div class="flex justify-between text-sm mb-2">
@@ -344,22 +506,32 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="py-16 bg-[#162A23] text-white">
-      <div class="max-w-7xl mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Make an Impact?</h2>
-        <p class="text-lg text-gray-200 mb-8">Every donation, no matter the size, brings us closer to our mission.</p>
-        <button class="px-8 py-3 rounded-full bg-white text-[#162A23] font-semibold btn">Donate Now</button>
+    <section class="py-12 bg-[#162A23] text-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between mb-6">
+          <img src="./resources/images/hopebridgeimg.png" alt="HopeBridge" class="w-30 h-20 object-contain">
+          <div class="text-center flex-1">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">Ready to Make an Impact?</h2>
+            <p class="section-subtitle text-lg md:text-xl mb-6 max-w-2xl mx-auto">
+              Every donation, no matter the size, brings us closer to our mission.
+            </p>
+            <button class="px-8 py-3 rounded-full donate-btn text-white font-semibold btn">
+              <i class="fas fa-rocket mr-2"></i>Start Your Journey
+            </button>
+          </div>
+          <img src="./resources/images/hopebridgeimg.png" alt="HopeBridge" class="w-30 h-20 object-contain">
+        </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer id="contact" class="bg-gray-900 text-gray-300">
+  <footer id="contact" class="text-gray-200" style="background-color: rgb(60, 0, 8);">
     <div class="max-w-7xl mx-auto px-6 py-16">
       <div class="grid md:grid-cols-4 gap-12 mb-12">
         <!-- Company Info -->
         <div>
-          <h4 class="text-white font-bold text-lg mb-4">COMPANY</h4>
+          <h4 class="footer-heading text-white text-lg mb-4">COMPANY</h4>
           <ul class="space-y-2">
             <li><a href="#" class="hover:text-white transition">About Us</a></li>
             <li><a href="#" class="hover:text-white transition">Our Mission</a></li>
@@ -369,7 +541,7 @@
 
         <!-- Legal -->
         <div>
-          <h4 class="text-white font-bold text-lg mb-4">LEGAL</h4>
+          <h4 class="footer-heading text-white text-lg mb-4">LEGAL</h4>
           <ul class="space-y-2">
             <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
             <li><a href="#" class="hover:text-white transition">Terms & Conditions</a></li>
@@ -378,25 +550,25 @@
 
         <!-- Contact -->
         <div>
-          <h4 class="text-white font-bold text-lg mb-4">CONTACT</h4>
+          <h4 class="footer-heading text-white text-lg mb-4">CONTACT</h4>
           <ul class="space-y-2 text-sm">
-            <li>123 Charity Lane, Hope City, 12345</li>
-            <li>contact@hopebridge.org</li>
-            <li>(123) 456-7890</li>
+            <li><i class="fas fa-map-marker-alt mr-2"></i>123 Charity Lane, Hope City, 12345</li>
+            <li><i class="fas fa-envelope mr-2"></i>contact@hopebridge.org</li>
+            <li><i class="fas fa-phone mr-2"></i>(123) 456-7890</li>
           </ul>
         </div>
 
         <!-- Follow Us -->
         <div>
-          <h4 class="text-white font-bold text-lg mb-4">FOLLOW US</h4>
+          <h4 class="footer-heading text-white text-lg mb-4">FOLLOW US</h4>
           <div class="flex space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full bg-gradient-to-br from-[#3C0008] to-[#162A23] flex items-center justify-center hover:scale-110 transition text-white">
+            <a href="#" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:scale-110 hover:bg-opacity-30 transition text-black">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-gradient-to-br from-[#3C0008] to-[#162A23] flex items-center justify-center hover:scale-110 transition text-white">
+            <a href="#" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:scale-110 hover:bg-opacity-30 transition text-black">
               <i class="fab fa-twitter"></i>
             </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-gradient-to-br from-[#3C0008] to-[#162A23] flex items-center justify-center hover:scale-110 transition text-white">
+            <a href="#" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:scale-110 hover:bg-opacity-30 transition text-black">
               <i class="fab fa-instagram"></i>
             </a>
           </div>
@@ -404,7 +576,7 @@
       </div>
 
       <!-- Copyright -->
-      <div class="border-t border-gray-800 pt-8 text-center text-sm">
+      <div class="border-t border-white border-opacity-20 pt-8 text-center text-sm">
         <p>© 2024 HopeBridge™ - All Rights Reserved.</p>
       </div>
     </div>
