@@ -1,6 +1,19 @@
 {
+  "name": "donation-website",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsc --watch"
+  },
   "dependencies": {
     "react-router-dom": "^7.10.1",
     "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.16"
   }
 }
